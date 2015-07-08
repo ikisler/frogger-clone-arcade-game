@@ -56,16 +56,16 @@ Player.prototype.render = function() {
 }
 
 Player.prototype.handleInput = function(keyCode) {
-    if(keyCode === 'left') {
+    if(keyCode === 'left' && this.x > 0) {
         this.x -=100;
     }
-    else if(keyCode === 'right') {
+    else if(keyCode === 'right' && this.x < 400) {
         this.x += 100;
     }
-    else if(keyCode === 'up') {
+    else if(keyCode === 'up' && this.y > 0) {
         this.y -= 82;
     }
-    else {
+    else if(keyCode === 'down' && this.y < 400){
         this.y += 82;
     }
 }
