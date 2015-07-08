@@ -10,6 +10,8 @@ var Enemy = function(x, y) {
     // we've provided one for you to get started
     this.x = x;
     this.y = y;
+    this.height = 80;
+    this.width = 70;
     this.speed = Math.floor(Math.random() * 200 + 1);
 
     // The image/sprite for our enemies, this uses
@@ -30,6 +32,13 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 550) {
         this.x = -100;
     }
+
+    // Handle collisions
+    if (this.x < player.x + player.width && this.x + this.width > player.x && this.y < player.y + player.height && this.height + this.y > player.y) {
+        // Send player back to start
+        player.reset();
+    }
+
 }
 
 // Draw the enemy on the screen, required method for game
@@ -41,20 +50,33 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-    this.x = 200;
-    this.y = 400;
+    this.reset();
+    this.height = 50;
+    this.width = 100;
     this.speed = 100;
     this.sprite = 'images/char-pink-girl.png';
 }
 
+Player.prototype.reset = function() {
+    this.x = 200;
+    this.y = 400;
+}
+
 Player.prototype.update = function(dt) {
     var speed = this.speed * dt;
+
+    // When player wins
+    if(this.y < 40)
+    {
+        this.reset();
+    }
 }
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+// Player movement
 Player.prototype.handleInput = function(keyCode) {
     if(keyCode === 'left' && this.x > 0) {
         this.x -=100;
@@ -76,9 +98,12 @@ Player.prototype.handleInput = function(keyCode) {
 var allEnemies = [];
 var player = new Player();
 
-for(var i=0; i<3; i++) {
-    allEnemies.push(new Enemy(-100,(70 * (i+1))));
-}
+// Fill array with enemies
+allEnemies.push(new Enemy(-100, 65));
+allEnemies.push(new Enemy(-100, 145));
+allEnemies.push(new Enemy(-100, 145));
+allEnemies.push(new Enemy(-100, 225));
+
 
 
 // This listens for key presses and sends the keys to your
