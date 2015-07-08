@@ -1,7 +1,16 @@
+/*** 
+Help:
+https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub
+https://www.youtube.com/watch?v=SxeHV1kt7iU&feature=youtu.be
+***/
+
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
+    this.x = x;
+    this.y = y;
+    this.speed = Math.floor(Math.random() * 200 + 1);
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -14,6 +23,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    var speed = this.speed * dt;
+    this.x += speed;
+
+    // When enemies go off the screen, reset them to the other side
+    if(this.x > 550) {
+        this.x = -100;
+    }
 }
 
 // Draw the enemy on the screen, required method for game
@@ -24,12 +40,45 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+var Player = function() {
+    this.x = 200;
+    this.y = 400;
+    this.speed = 100;
+    this.sprite = 'images/char-pink-girl.png';
+}
 
+Player.prototype.update = function(dt) {
+    var speed = this.speed * dt;
+}
+
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
+
+Player.prototype.handleInput = function(keyCode) {
+    if(keyCode === 'left') {
+        this.x -=100;
+    }
+    else if(keyCode === 'right') {
+        this.x += 100;
+    }
+    else if(keyCode === 'up') {
+        this.y -= 82;
+    }
+    else {
+        this.y += 82;
+    }
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+var allEnemies = [];
+var player = new Player();
 
+for(var i=0; i<3; i++) {
+    allEnemies.push(new Enemy(-100,(70 * (i+1))));
+}
 
 
 // This listens for key presses and sends the keys to your
