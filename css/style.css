@@ -1,3 +1,19 @@
 body {
     text-align: center;
 }
+
+canvas {
+	//margin-right: auto;
+	//margin-left: auto;
+	position: absolute;
+	left: 35%;
+	top: 0;
+}
+
+.game {
+	z-index: 1;
+}
+
+.menu {
+	z-index: 2;
+}

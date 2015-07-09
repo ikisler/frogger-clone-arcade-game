@@ -27,7 +27,23 @@ var Engine = (function(global) {
 
     canvas.width = 505;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+
+    canvas.className = 'game';
+
+    // Menu canvas
+    canvasMenu = doc.createElement('canvas');
+    ctx02 = canvasMenu.getContext('2d');
+    canvasMenu.className = 'menu';
+    canvasMenu.width = 505;
+    canvasMenu.height = 606;
+
+    // Add a container div and canvases to HTML doc
+    var div = doc.createElement('div');
+    doc.body.appendChild(div);
+    div.appendChild(canvas);
+    div.appendChild(canvasMenu);
+    //doc.body.appendChild(canvas);  Original code, just in case
+
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -161,6 +177,63 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        /*var menu = ctx.drawRect(20,20,200,200);
+        menu.onClick(function() {
+            menu.
+        });*/
+
+        /*var doc = global.document,
+        win = global.window,
+        canvas = doc.createElement('canvas'),
+        ctx = canvas.getContext('2d'),
+        lastTime;
+
+        canvas.width = 505;
+        canvas.height = 606;
+        doc.body.appendChild(canvas);*/
+        ctx02.fillStyle = '#fff';
+        ctx02.strokeStyle = '#000';
+        ctx02.fillRect(0, 100, 505, 300);
+        ctx02.strokeRect(0, 100, 505, 300);
+
+        ctx02.font = '20px Arial';
+        ctx02.fillStyle = '#000';
+        ctx02.fillText('Choose a character:', 165, 150);
+
+        var player01 = ctx02.drawImage(Resources.get('images/char-boy.png'), 80, 150);
+        var player02 = ctx02.drawImage(Resources.get('images/char-pink-girl.png'), 200, 150);
+        var player03 = ctx02.drawImage(Resources.get('images/char-cat-girl.png'), 320, 150);
+        //ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        canvasMenu.addEventListener('mousedown',doMouseDown, false);
+    }
+
+    function doMouseDown() {
+        var canvasX = event.pageX;
+        var canvasY = event.pageY;
+        console.log(canvasX + " " + canvasY);
+        if(canvasX > 635 && canvasY > 170 && canvasX < 731 && canvasY < 290) {
+            console.log("First icon");
+            player.sprite = 'images/char-boy.png';
+            clearMenu();
+        }
+        else if(canvasX > 757 && canvasY > 170 && canvasX < 855 && canvasY < 290) {
+            console.log("Second icon");
+            player.sprite = 'images/char-pink-girl.png';
+            clearMenu();
+        }
+        else if(canvasX > 876 && canvasY > 170 && canvasX < 975 && canvasY < 290) {
+            console.log("Third icon");
+            player.sprite = 'images/char-cat-girl.png';
+            clearMenu();
+        }
+        else {
+            alert('Please choose a character');
+        }
+    }
+
+    function clearMenu() {
+        ctx02.clearRect(0, 0, canvas.width, canvas.height);
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -173,7 +246,8 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-pink-girl.png'
+        'images/char-pink-girl.png',
+        'images/char-cat-girl.png'
     ]);
     Resources.onReady(init);
 
