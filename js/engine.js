@@ -37,13 +37,13 @@ var Engine = (function(global) {
     canvasMenu.width = 505;
     canvasMenu.height = 606;
 
-    // Add a container div and canvases to HTML doc
-    var div = doc.createElement('div');
-    doc.body.appendChild(div);
-    div.appendChild(canvas);
-    div.appendChild(canvasMenu);
-    //doc.body.appendChild(canvas);  Original code, just in case
-
+    // Wait for the rest of the page to load before adding canvases
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the containger div, then add canvases to it
+        div = doc.body.getElementsByClassName('game-container');
+        div[0].appendChild(canvas);
+        div[0].appendChild(canvasMenu);
+    }, false);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -151,7 +151,14 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
+        /*ctx.fillStyle = '#fff';
+        ctx.fillRect(0,0,505,50);
+        ctx.strokeStyle = '#000'
+        ctx.strokeRect(0,0,505,50);*/
+        ctx.fillStyle = '#fff';
+        ctx.font = '20px Arial';
+        ctx.fillText('Score:', 8, 75);
+        showScore();
 
         renderEntities();
     }
@@ -203,33 +210,33 @@ var Engine = (function(global) {
         var player01 = ctx02.drawImage(Resources.get('images/char-boy.png'), 80, 150);
         var player02 = ctx02.drawImage(Resources.get('images/char-pink-girl.png'), 200, 150);
         var player03 = ctx02.drawImage(Resources.get('images/char-cat-girl.png'), 320, 150);
-        //ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        canvasMenu.addEventListener('mousedown',doMouseDown, false);
+        // When the user clicks on the menu, get the character that they've selected
+        canvasMenu.addEventListener('mousedown', getCharacter, false);
     }
 
-    function doMouseDown() {
+    function getCharacter() {
         var canvasX = event.pageX;
         var canvasY = event.pageY;
-        console.log(canvasX + " " + canvasY);
-        if(canvasX > 635 && canvasY > 170 && canvasX < 731 && canvasY < 290) {
-            console.log("First icon");
+        if(canvasX > 635 && canvasY > 330 && canvasX < 731 && canvasY < 415) {
             player.sprite = 'images/char-boy.png';
             clearMenu();
         }
-        else if(canvasX > 757 && canvasY > 170 && canvasX < 855 && canvasY < 290) {
-            console.log("Second icon");
+        else if(canvasX > 757 && canvasY > 330 && canvasX < 855 && canvasY < 415) {
             player.sprite = 'images/char-pink-girl.png';
             clearMenu();
         }
-        else if(canvasX > 876 && canvasY > 170 && canvasX < 975 && canvasY < 290) {
-            console.log("Third icon");
+        else if(canvasX > 876 && canvasY > 330 && canvasX < 975 && canvasY < 415) {
             player.sprite = 'images/char-cat-girl.png';
             clearMenu();
         }
         else {
-            alert('Please choose a character');
+            //alert('Please choose a character');
         }
+    }
+
+    function showScore() {
+        ctx.fillText(player.score, 70, 75);
     }
 
     function clearMenu() {

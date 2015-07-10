@@ -55,6 +55,7 @@ var Player = function() {
     this.width = 100;
     this.speed = 100;
     this.sprite = 'images/char-pink-girl.png';
+    this.score = 0;
 }
 
 Player.prototype.reset = function() {
@@ -69,6 +70,8 @@ Player.prototype.update = function(dt) {
     if(this.y < 40)
     {
         this.reset();
+        this.score++;
+        console.log(this.score);
     }
 }
 
