@@ -1,6 +1,6 @@
 # Frogger Clone Readme
-## HTML5 canvas and Javascript portions developed by Isabeau Kisler
-## Game engine code developed by Udacity
+**HTML5 canvas and Javascript portions developed by Isabeau Kisler**
+**Game engine code developed by Udacity**
 
 ###Instructions
 Get the character across the road to the water.  Avoid the bugs, as they send you back to start.
