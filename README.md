@@ -1,5 +1,5 @@
 # Frogger Clone Readme
-**HTML5 canvas and Javascript portions developed by Isabeau Kisler**
+###HTML5 canvas and Javascript portions developed by Isabeau Kisler
 **Game engine code developed by Udacity**
 
 ###Instructions
