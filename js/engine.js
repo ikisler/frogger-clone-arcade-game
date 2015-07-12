@@ -210,18 +210,18 @@ var Engine = (function(global) {
 		var canvasX = event.pageX;
 		var canvasY = event.pageY;
 
-		// Assign player sprite based on which character was chosen
-		if(canvasX > 635 && canvasY > 330 && canvasX < 731 && canvasY < 415) {
-			player.sprite = 'images/char-boy.png';
-			clearMenu();
-		}
-		else if(canvasX > 757 && canvasY > 330 && canvasX < 855 && canvasY < 415) {
-			player.sprite = 'images/char-pink-girl.png';
-			clearMenu();
-		}
-		else if(canvasX > 876 && canvasY > 330 && canvasX < 975 && canvasY < 415) {
-			player.sprite = 'images/char-cat-girl.png';
-			clearMenu();
+		// If the player sprite is set to the placeholder, then assign player sprite based on which character was chosen
+		if(player.sprite==='images/star.png') {
+			if(canvasX > 635 && canvasY > 330 && canvasX < 731 && canvasY < 415) {
+				player.sprite = 'images/char-boy.png';
+				clearMenu();
+			} else if(canvasX > 757 && canvasY > 330 && canvasX < 855 && canvasY < 415) {
+				player.sprite = 'images/char-pink-girl.png';
+				clearMenu();
+			} else if(canvasX > 876 && canvasY > 330 && canvasX < 975 && canvasY < 415) {
+				player.sprite = 'images/char-cat-girl.png';
+				clearMenu();
+			}
 		}
 	}
 
@@ -241,7 +241,8 @@ var Engine = (function(global) {
 		'images/enemy-bug.png',
 		'images/char-boy.png',
 		'images/char-pink-girl.png',
-		'images/char-cat-girl.png'
+		'images/char-cat-girl.png',
+		'images/star.png'
 	]);
 	Resources.onReady(init);
 
