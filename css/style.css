@@ -1,24 +1,41 @@
-@import url("http://fonts.googleapis.com/css?family=Noto+Sans");
+/*** General Styles ***/
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
 
 body {
 	font-family: "Noto Sans", sans-serif;
 	color: #5d3204;
-    text-align: center;
-    background-color: #bbe39e;
+	text-align: center;
+	background-color: #bbe39e;
 }
 
+/*** Grid System ***/
+.row {
+	width: 80%;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+
+.col-6 {
+	width: 50%;
+}
+
+.col-12 {
+	width: 100%;
+}
+
+/*** Game Section ***/
 .game-container {
-	width:510px;
-	height:600px;
+	width: 510px;
+	height: 600px;
 	position: relative;
-	margin-right: auto;
-	margin-left: auto;
+	margin: 0 auto;
 }
 
 canvas {
 	position: absolute;
-	left:0;
-	top:0;
+	left: 0;
+	top: 0;
 }
 
 .game {
@@ -29,10 +46,11 @@ canvas {
 	z-index: 2;
 }
 
+/*** Header Section ***/
 h1 {
 	font-size: 2.8em;
 	padding-bottom: 0;
-	margin: auto 0 auto;
+	margin: 0;
 }
 
 .title {
@@ -45,31 +63,15 @@ h1 {
 
 h2 {
 	font-size: 1.5em;
-	padding-top: 0;
-	margin: auto 0 auto 0;
-	padding-bottom: 10px;
-}
-
-h3 {
-	font-size: 1.5em;
+	margin: 0;
+	padding: 0 0 10px 0;
 }
 
 .underline {
 	border-bottom: 2px solid #629c39;
 }
 
-.row {
-	width: 80%;
-	display: flex;
-	flex-wrap: wrap;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-.col-6 {
-	width: 50%;
-}
-
-.col-12 {
-	width: 100%;
+/*** Instructions Section ***/
+h3 {
+	font-size: 1.5em;
 }
