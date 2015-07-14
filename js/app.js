@@ -54,7 +54,7 @@ var Player = function() {
 	this.height = 50;
 	this.width = 100;
 	this.speed = 100;
-	this.sprite = 'images/star.png'; // Placeholder until character is chosen
+	this.sprite = 'images/Star.png'; // Placeholder until character is chosen
 	this.score = 0;
 };
 

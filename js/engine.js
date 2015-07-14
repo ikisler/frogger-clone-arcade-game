@@ -211,7 +211,7 @@ var Engine = (function(global) {
 		var canvasY = event.pageY;
 
 		// If the player sprite is set to the placeholder, then assign player sprite based on which character was chosen
-		if(player.sprite==='images/star.png') {
+		if(player.sprite==='images/Star.png') {
 			if(canvasX > 635 && canvasY > 330 && canvasX < 731 && canvasY < 415) {
 				player.sprite = 'images/char-boy.png';
 				clearMenu();
@@ -242,7 +242,7 @@ var Engine = (function(global) {
 		'images/char-boy.png',
 		'images/char-pink-girl.png',
 		'images/char-cat-girl.png',
-		'images/star.png'
+		'images/Star.png'
 	]);
 	Resources.onReady(init);
 
