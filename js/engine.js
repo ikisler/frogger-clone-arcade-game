@@ -195,30 +195,45 @@ var Engine = (function(global) {
 
 		ctx02.font = '20px Arial';
 		ctx02.fillStyle = '#000';
-		ctx02.fillText('Choose a character:', 165, 150);
+		ctx02.fillText('Press letter key to choose a character:', 90, 150);
 
 		ctx02.drawImage(Resources.get('images/char-boy.png'), 80, 150);
 		ctx02.drawImage(Resources.get('images/char-pink-girl.png'), 200, 150);
 		ctx02.drawImage(Resources.get('images/char-cat-girl.png'), 320, 150);
 
-		// When the user clicks on the menu, get the character that they've selected
-		canvasMenu.addEventListener('mousedown', getCharacter, false);
+		ctx02.fillText('A', 125, 320);
+		ctx02.fillText('B', 245, 320);
+		ctx02.fillText('C', 365, 320);
+
+		// When the user presses 'a', 'b', or 'c', get the character that they've selected
+		document.addEventListener('keyup', function(e) {
+			var allowedKeys = {
+				65: 'a',
+				66: 'b',
+				67: 'c'
+			};
+
+			getCharacter(allowedKeys[e.keyCode]);
+		});
 	}
 
-	function getCharacter() {
+	function getCharacter(keyCode) {
 		// Get the location of the click
 		var canvasX = event.pageX;
 		var canvasY = event.pageY;
 
 		// If the player sprite is set to the placeholder, then assign player sprite based on which character was chosen
 		if(player.sprite==='images/Star.png') {
-			if(canvasX > 635 && canvasY > 330 && canvasX < 731 && canvasY < 415) {
+			if(keyCode === 'a') {
+				console.log("a");
 				player.sprite = 'images/char-boy.png';
 				clearMenu();
-			} else if(canvasX > 757 && canvasY > 330 && canvasX < 855 && canvasY < 415) {
+			}
+			else if(keyCode === 'b') {
 				player.sprite = 'images/char-pink-girl.png';
 				clearMenu();
-			} else if(canvasX > 876 && canvasY > 330 && canvasX < 975 && canvasY < 415) {
+			}
+			else if(keyCode === 'c') {
 				player.sprite = 'images/char-cat-girl.png';
 				clearMenu();
 			}
