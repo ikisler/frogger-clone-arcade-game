@@ -2,6 +2,9 @@
 ###HTML5 canvas and Javascript portions developed by Isabeau Kisler
 **Game engine code developed by Udacity**
 
+###The Project
+An HTML5 Canvas powered video game, developed using the best practices in Object Oriented JavaScript.
+
 ###Running the Program
 Down the folder and all its files, then double click on 'index.html'.
 **OR**
